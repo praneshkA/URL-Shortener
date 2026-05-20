@@ -9,7 +9,13 @@ import { redirect } from './controllers/urlController.js';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://your-netlify-app.netlify.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
