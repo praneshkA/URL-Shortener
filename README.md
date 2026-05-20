@@ -1,204 +1,273 @@
 # SnapLink Analytics
 
-A production-ready full-stack URL shortener with real-time analytics, built for the [Katomaran Hackathon](https://katomaran.com).
-
-> **This project is a part of a hackathon run by https://katomaran.com**
-
-SnapLink Analytics lets authenticated users shorten URLs, track every click, view visit history, and visualize daily engagement with interactive charts.
-
-## Tech Stack
-
-| Layer | Technologies |
-|-------|-------------|
-| Frontend | React, Vite, Tailwind CSS, shadcn/ui-style components, Recharts, qrcode |
-| Backend | Node.js, Express, Mongoose |
-| Database | MongoDB (Atlas recommended) |
-| Auth | JWT + bcrypt |
+SnapLink Analytics is a full-stack URL shortener application that allows users to create short URLs, manage links, and track analytics such as click count and recent visits. The platform includes secure authentication, server-side redirection, and a responsive analytics dashboard.
 
 ## Features
 
-- User signup, login, JWT-protected routes, logout
-- URL shortening with unique `nanoid` codes
-- Server-side redirects with click tracking
-- Visit analytics: total clicks, last visited, recent visits, daily chart
-- Dashboard with search, copy, QR codes, delete
-- Dark/light mode, responsive sidebar layout
-- Toast notifications, loading & empty states
+* User Signup & Login (JWT Authentication)
+* URL Shortening
+* Unique Short URL Generation
+* Redirect to Original URL
+* Click Analytics Tracking
+* Recent Visit History
+* Protected Dashboard
+* Copy Short URL
+* Delete Shortened URLs
+* Responsive UI
+* Dark/Light Theme
 
-## Project Structure
+---
 
-```
-snaplink/
+# Tech Stack
+
+## Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* shadcn/ui
+* Axios
+* Recharts
+
+## Backend
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* JWT Authentication
+* bcrypt
+* nanoid
+
+---
+
+# Folder Structure
+
+```bash
+project-root/
+│
 ├── backend/
-│   ├── config/          # DB & env
-│   ├── controllers/     # Auth, URLs, analytics
-│   ├── middleware/      # Auth, validation, errors
-│   ├── models/          # User, ShortUrl, Visit
-│   ├── routes/          # REST routes
-│   ├── utils/           # Helpers
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── config/
 │   └── server.js
+│
 ├── frontend/
-│   └── src/
-│       ├── components/  # UI & layout
-│       ├── context/     # Auth & theme
-│       ├── hooks/       # Toast
-│       ├── pages/       # All routes
-│       └── services/    # API layer
-└── README.md
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   └── App.jsx
+│
+├── README.md
+└── .gitignore
 ```
 
-## Prerequisites
+---
 
-- Node.js 18+
-- MongoDB Atlas cluster (or local MongoDB)
+# Setup Instructions
 
-## Setup
+## 1. Clone Repository
 
-### 1. Clone & install
+```bash
+git clone https://github.com/praneshkA/URL-Shortener.git
+```
+
+---
+
+## 2. Install Frontend Dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+## 3. Install Backend Dependencies
 
 ```bash
 cd backend
 npm install
-cp .env.example .env
-
-cd ../frontend
-npm install
-cp .env.example .env
 ```
 
-### 2. Environment variables
+---
 
-**Backend** (`backend/.env`):
+# Environment Variables
+
+## Backend `.env`
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/snaplink?retryWrites=true&w=majority
-JWT_SECRET=your_super_secret_jwt_key_change_in_production
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_jwt_secret
 BASE_URL=http://localhost:5000
 ```
 
-**Frontend** (`frontend/.env`):
+## Frontend `.env`
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-`BASE_URL` must match where the backend serves redirects (your API host in production).
+---
 
-### 3. MongoDB Atlas
+# Run Application
 
-1. Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/atlas).
-2. Create a database user and whitelist your IP (`0.0.0.0/0` for development).
-3. Copy the connection string into `MONGO_URI`.
-
-### 4. Run locally
-
-**Terminal 1 — Backend:**
+## Start Backend
 
 ```bash
 cd backend
 npm run dev
 ```
 
-**Terminal 2 — Frontend:**
+## Start Frontend
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000/api
-- Short links redirect via: `http://localhost:5000/:shortCode`
+---
 
-## API Documentation
+# API Endpoints
 
-All protected routes require header: `Authorization: Bearer <token>`
+## Authentication
 
-### Auth
+| Method | Endpoint           |
+| ------ | ------------------ |
+| POST   | /api/auth/register |
+| POST   | /api/auth/login    |
+| GET    | /api/auth/profile  |
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register `{ name, email, password }` |
-| POST | `/api/auth/login` | Login `{ email, password }` |
-| GET | `/api/auth/profile` | Get current user (protected) |
+## URL Routes
 
-### URLs
+| Method | Endpoint      |
+| ------ | ------------- |
+| POST   | /api/urls     |
+| GET    | /api/urls     |
+| GET    | /api/urls/:id |
+| DELETE | /api/urls/:id |
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/urls` | Create short URL `{ originalUrl }` |
-| GET | `/api/urls` | List user URLs (`?search=term`) |
-| GET | `/api/urls/:id` | Get single URL |
-| DELETE | `/api/urls/:id` | Delete URL & visits |
+## Analytics
 
-### Analytics
+| Method | Endpoint                  |
+| ------ | ------------------------- |
+| GET    | /api/analytics/:shortCode |
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/analytics/:shortCode` | Analytics for owned link |
+## Redirect
 
-### Redirect
+| Method | Endpoint    |
+| ------ | ----------- |
+| GET    | /:shortCode |
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/:shortCode` | Redirect & record visit |
+---
 
-### Example responses
+# Assumptions Made
 
-**Register / Login:**
+* Each shortened URL belongs to one authenticated user.
+* Analytics are stored for every successful redirect.
+* Short codes are generated uniquely using nanoid.
+* MongoDB Atlas is used as the cloud database.
+* Server-side redirect handling is implemented for analytics tracking.
+* Users can only manage their own URLs.
+* Invalid URLs are rejected using backend validation.
 
-```json
-{
-  "success": true,
-  "token": "eyJhbG...",
-  "user": { "id": "...", "name": "Alex", "email": "alex@example.com" }
-}
+---
+
+# AI Planning Document
+
+## Planning Approach
+
+The application was planned using a modular MERN architecture to separate frontend and backend responsibilities clearly.
+
+### Frontend Planning
+
+* React-based SPA
+* Dashboard-focused UI
+* Component reusability
+* API service layer
+* Protected routes
+
+### Backend Planning
+
+* REST API structure
+* JWT authentication middleware
+* MongoDB schema relationships
+* Analytics tracking system
+* Centralized error handling
+
+### Database Planning
+
+Three primary collections were designed:
+
+* Users
+* URLs
+* Visits
+
+Relationships:
+
+* One user → many URLs
+* One URL → many visits
+
+---
+
+# Architecture Diagram
+
+```text
+                ┌──────────────────┐
+                │     Frontend      │
+                │ React + Vite UI   │
+                └────────┬─────────┘
+                         │ REST API
+                         ▼
+                ┌──────────────────┐
+                │     Backend       │
+                │ Node + Express    │
+                └────────┬─────────┘
+                         │ Mongoose
+                         ▼
+                ┌──────────────────┐
+                │    MongoDB Atlas  │
+                │ Users / URLs /    │
+                │ Visit Analytics   │
+                └──────────────────┘
 ```
 
-**Analytics:**
+---
 
-```json
-{
-  "success": true,
-  "analytics": {
-    "shortCode": "a8Kx2mQp",
-    "totalClicks": 42,
-    "lastVisited": "2026-05-20T10:00:00.000Z",
-    "recentVisits": [{ "timestamp": "..." }],
-    "dailyClicks": [{ "date": "2026-05-20", "clicks": 5 }]
-  }
-}
-```
+# Future Improvements
 
-## Deployment
+* QR Code Generation
+* Custom URL Aliases
+* Link Expiry
+* Device & Browser Analytics
+* Export Analytics Reports
+* Public Statistics Page
 
-### Backend (Render / Railway / Fly.io)
+---
 
-1. Set env vars: `PORT`, `MONGO_URI`, `JWT_SECRET`, `BASE_URL` (e.g. `https://api.yourdomain.com`).
-2. Start command: `npm start`
-3. Ensure MongoDB Atlas allows your host IP.
+# Deployment
 
-### Frontend (Vercel / Netlify)
+Frontend can be deployed using:
 
-1. Set `VITE_API_URL=https://api.yourdomain.com/api`
-2. Build: `npm run build`
-3. Publish `dist/`
+* Vercel
 
-### Production notes
+Backend can be deployed using:
 
-- Use a strong `JWT_SECRET`
-- Set `BASE_URL` to your backend public URL for correct short links
-- Enable HTTPS on both frontend and API
-- Configure CORS origins if needed (currently open for development)
+* Render
+* Railway
 
-## Scripts
+Database:
 
-| Location | Command | Description |
-|----------|---------|-------------|
-| backend | `npm run dev` | Dev server with watch |
-| backend | `npm start` | Production server |
-| frontend | `npm run dev` | Vite dev server |
-| frontend | `npm run build` | Production build |
+* MongoDB Atlas
+
+---
+
+# Author
+
+Pranesh
+
 
 
