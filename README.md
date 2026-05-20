@@ -1,154 +1,257 @@
-SnapLink Analytics — Shorten • Track • Analyze
+<h1 align="center">🚀 SnapLink Analytics</h1>
 
-A modern full-stack URL Shortener with Analytics built using the MERN Stack.
+<p align="center">
+  Shorten • Track • Analyze
+</p>
 
-🌐 Live Deployment Links
-Frontend (Netlify)
+<p align="center">
+  A modern full-stack URL Shortener with Analytics built using the MERN Stack.
+</p>
 
-SnapLink Analytics Frontend
+---
 
-Backend API (Render)
+# 🌐 Live Demo
 
-SnapLink AnalyticsBackend API
+| Service | Link |
+|---|---|
+| Frontend | https://katomaran-url.netlify.app |
+| Backend API | https://url-shortener-1hzg.onrender.com |
+| Demo Video | https://www.loom.com/share/a9ea57a79c04436f96666118db09f941 |
 
-Demo Video (Loom)
-SnapLink AnalyticsDemo Video
+---
 
-🚀 Setup Instructions
-1️⃣ Clone the Repository
+# 🏗️ Architecture Diagram
+
+<p align="center">
+  <img src="./assets/image.png" width="1000"/>
+</p>
+
+---
+
+# ✨ Features
+
+- 🔐 JWT Authentication
+- ✂️ URL Shortening
+- 📊 Analytics Dashboard
+- 📈 Click Tracking
+- 🔗 Custom Alias Support
+- 📱 Responsive UI
+- 🌙 Dark Mode
+- 🧾 QR Code Generation
+- ⏳ Expiry Date Support
+- ✏️ Edit/Delete URLs
+- 📋 Copy Short Links
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- React.js
+- Tailwind CSS
+- Axios
+- React Router
+- Recharts
+
+## Backend
+- Node.js
+- Express.js
+- JWT Authentication
+- NanoID
+
+## Database
+- MongoDB Atlas
+
+## Deployment
+- Netlify
+- Render
+
+---
+
+# 🚀 Setup Instructions
+
+## 1️⃣ Clone Repository
+
+```bash
 git clone YOUR_GITHUB_REPOSITORY_LINK
-2️⃣ Navigate to Project Folder
-cd katomaran
-📦 Backend Setup
-3️⃣ Navigate to Backend Folder
-cd server
-4️⃣ Install Backend Dependencies
+```
+
+---
+
+## 2️⃣ Navigate to Project
+
+```bash
+cd snaplink-analytics
+```
+
+---
+
+# 📦 Backend Setup
+
+## 3️⃣ Navigate to Backend Folder
+
+```bash
+cd backend
+```
+
+---
+
+## 4️⃣ Install Dependencies
+
+```bash
 npm install
-5️⃣ Create Environment Variables
+```
 
-Create a .env file inside the server folder and add:
+---
 
+## 5️⃣ Create Environment Variables
+
+Create `.env` inside backend folder:
+
+```env
 PORT=5000
 MONGO_URI=YOUR_MONGODB_ATLAS_URI
 JWT_SECRET=YOUR_SECRET_KEY
 CLIENT_URL=http://localhost:5173
-6️⃣ Start Backend Server
+```
+
+---
+
+## 6️⃣ Start Backend
+
+```bash
 npm start
+```
 
-Backend will run on:
+Backend runs on:
 
+```bash
 http://localhost:5000
-💻 Frontend Setup
-7️⃣ Open New Terminal
+```
 
-Navigate to frontend folder:
+---
 
-cd client
-8️⃣ Install Frontend Dependencies
+# 💻 Frontend Setup
+
+## 7️⃣ Open New Terminal
+
+```bash
+cd frontend
+```
+
+---
+
+## 8️⃣ Install Dependencies
+
+```bash
 npm install
-9️⃣ Start Frontend
+```
+
+---
+
+## 9️⃣ Start Frontend
+
+```bash
 npm run dev
+```
 
-Frontend will run on:
+Frontend runs on:
 
+```bash
 http://localhost:5173
-✅ Application Ready
+```
 
-Now open the frontend URL in the browser and use the application.
+---
 
-Users can:
+# 📊 Application Flow
 
-Signup/Login
-Create Short URLs
-Generate Custom Aliases
-Track Analytics
-View Click Statistics
-Edit/Delete URLs
-Copy Short Links
-Generate QR Codes
-Use Dark Mode
-Monitor URL Expiry
-🧪 Assumptions Made
-Users must register and login before accessing dashboard features.
-Each authenticated user can manage only their own URLs.
-MongoDB Atlas is used for cloud database storage.
-JWT tokens are used for secure authentication and protected routes.
-Short URLs redirect through backend APIs.
-Analytics are tracked during every redirect request.
-Expired URLs should stop redirecting after expiry.
-Users are expected to enter valid URLs beginning with http:// or https://.
-QR codes work properly after deployment using production URLs.
-Internet connection is required for API communication.
-The application is optimized for modern browsers and responsive devices.
-Environment variables are mandatory for backend configuration and security.
-REST APIs are used for frontend-backend communication.
-Render and Netlify are used for deployment hosting.
-🧠 AI Planning Document
-📌 Project Goal
+1. User registers/login
+2. Frontend sends API requests
+3. Backend validates JWT token
+4. URLs stored in MongoDB
+5. Short links redirect users
+6. Analytics tracked on every click
+7. Dashboard displays stats and trends
 
-The primary goal of Katomaran is to build a production-style full-stack URL Shortener platform with analytics tracking using the MERN Stack.
+---
 
-The application enables users to:
+# 🧠 Development Workflow
 
-Shorten long URLs
-Manage links through a dashboard
-Track analytics
-Generate QR codes
-Customize aliases
-Monitor URL performance
-🛠️ Development Planning Workflow
-Phase 1 — Authentication System
-Planned Features
-User Signup
-User Login
-JWT Authentication
-Protected Routes
-Implementation
-Created authentication APIs using Express.js
-Implemented JWT-based authentication
-Stored authentication tokens securely
-Protected dashboard routes using middleware
-Phase 2 — URL Shortening Logic
-Planned Features
-Generate short URLs
-Unique short code generation
-URL validation
-Redirect handling
-Implementation
-Used NanoID for generating unique short codes
-Stored URL data in MongoDB Atlas
-Implemented redirect APIs
-Added backend URL validation
-Phase 3 — User Dashboard
-Planned Features
-Display all shortened URLs
-Copy links
-Delete URLs
-Responsive dashboard
-Implementation
-Built dashboard using React
-Added responsive layouts
-Implemented copy-to-clipboard functionality
-Added loading states and toast notifications
-Phase 4 — Analytics System
-Planned Features
-Click tracking
-Analytics dashboard
-Visit history
-Trend visualization
-Implementation
-Stored click analytics in MongoDB
-Tracked redirect events
-Built analytics dashboard
-Added charts and visualizations
-Phase 5 — Bonus Features
-Implemented Features
-QR Code generation
-Custom aliases
-Expiry date support
-Edit URL functionality
-Dark Mode
-Analytics charts
+## Phase 1 — Authentication
+- Signup/Login
+- JWT Authentication
+- Protected Routes
 
-Architecture Diagram
-<img src="./assets/image.png" width="1000"/>
+## Phase 2 — URL Shortening
+- Short URL generation
+- NanoID implementation
+- Redirect APIs
+
+## Phase 3 — Dashboard
+- URL Management
+- Copy/Delete Links
+- Responsive Design
+
+## Phase 4 — Analytics
+- Click Tracking
+- Visit History
+- Analytics Visualization
+
+## Phase 5 — Bonus Features
+- QR Codes
+- Custom Alias
+- Expiry Support
+- Dark Mode
+
+---
+
+# 🧪 Assumptions
+
+- Users must login before accessing dashboard
+- MongoDB Atlas is used as cloud database
+- JWT used for secure authentication
+- REST APIs handle frontend/backend communication
+- Expired URLs stop redirecting
+- Users provide valid URLs
+
+---
+
+# 🤖 AI Tools Used
+
+- ChatGPT
+- Claude AI
+
+Used for:
+- UI/UX Improvements
+- Debugging
+- Architecture Planning
+- Responsive Design
+- Feature Planning
+
+---
+
+# ✅ Final Outcome
+
+SnapLink Analytics successfully delivers:
+
+- Full-stack URL Shortener
+- Secure Authentication
+- Analytics Tracking
+- Production-style Dashboard
+- Modern Responsive UI
+- QR Code Support
+- SaaS-style Experience
+
+---
+
+# 📸 Project Preview
+
+<p align="center">
+  <img src="./assets/image.png" width="1000"/>
+</p>
+
+---
+
+# 👨‍💻 Author
+
+Developed by Pranesh
