@@ -151,5 +151,4 @@ Dark Mode
 Analytics charts
 
 Architecture Diagram
-![alt text](image.png)
-
+<img src="./assets/image.png" width="1000"/>
