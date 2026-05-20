@@ -1,273 +1,155 @@
-# SnapLink Analytics
+SnapLink Analytics — Shorten • Track • Analyze
 
-SnapLink Analytics is a full-stack URL shortener application that allows users to create short URLs, manage links, and track analytics such as click count and recent visits. The platform includes secure authentication, server-side redirection, and a responsive analytics dashboard.
+A modern full-stack URL Shortener with Analytics built using the MERN Stack.
 
-## Features
+🌐 Live Deployment Links
+Frontend (Netlify)
 
-* User Signup & Login (JWT Authentication)
-* URL Shortening
-* Unique Short URL Generation
-* Redirect to Original URL
-* Click Analytics Tracking
-* Recent Visit History
-* Protected Dashboard
-* Copy Short URL
-* Delete Shortened URLs
-* Responsive UI
-* Dark/Light Theme
+SnapLink Analytics Frontend
 
----
+Backend API (Render)
 
-# Tech Stack
+SnapLink AnalyticsBackend API
 
-## Frontend
+Demo Video (Loom)
+SnapLink AnalyticsDemo Video
 
-* React.js
-* Vite
-* Tailwind CSS
-* shadcn/ui
-* Axios
-* Recharts
-
-## Backend
-
-* Node.js
-* Express.js
-* MongoDB Atlas
-* Mongoose
-* JWT Authentication
-* bcrypt
-* nanoid
-
----
-
-# Folder Structure
-
-```bash
-project-root/
-│
-├── backend/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   └── server.js
-│
-├── frontend/
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── App.jsx
-│
-├── README.md
-└── .gitignore
-```
-
----
-
-# Setup Instructions
-
-## 1. Clone Repository
-
-```bash
-git clone https://github.com/praneshkA/URL-Shortener.git
-```
-
----
-
-## 2. Install Frontend Dependencies
-
-```bash
-cd frontend
+🚀 Setup Instructions
+1️⃣ Clone the Repository
+git clone YOUR_GITHUB_REPOSITORY_LINK
+2️⃣ Navigate to Project Folder
+cd katomaran
+📦 Backend Setup
+3️⃣ Navigate to Backend Folder
+cd server
+4️⃣ Install Backend Dependencies
 npm install
-```
+5️⃣ Create Environment Variables
 
----
+Create a .env file inside the server folder and add:
 
-## 3. Install Backend Dependencies
-
-```bash
-cd backend
-npm install
-```
-
----
-
-# Environment Variables
-
-## Backend `.env`
-
-```env
 PORT=5000
-MONGO_URI=your_mongodb_connection
-JWT_SECRET=your_jwt_secret
-BASE_URL=http://localhost:5000
-```
+MONGO_URI=YOUR_MONGODB_ATLAS_URI
+JWT_SECRET=YOUR_SECRET_KEY
+CLIENT_URL=http://localhost:5173
+6️⃣ Start Backend Server
+npm start
 
-## Frontend `.env`
+Backend will run on:
 
-```env
-VITE_API_URL=http://localhost:5000/api
-```
+http://localhost:5000
+💻 Frontend Setup
+7️⃣ Open New Terminal
 
----
+Navigate to frontend folder:
 
-# Run Application
-
-## Start Backend
-
-```bash
-cd backend
+cd client
+8️⃣ Install Frontend Dependencies
+npm install
+9️⃣ Start Frontend
 npm run dev
-```
 
-## Start Frontend
+Frontend will run on:
 
-```bash
-cd frontend
-npm run dev
-```
+http://localhost:5173
+✅ Application Ready
 
----
+Now open the frontend URL in the browser and use the application.
 
-# API Endpoints
+Users can:
 
-## Authentication
+Signup/Login
+Create Short URLs
+Generate Custom Aliases
+Track Analytics
+View Click Statistics
+Edit/Delete URLs
+Copy Short Links
+Generate QR Codes
+Use Dark Mode
+Monitor URL Expiry
+🧪 Assumptions Made
+Users must register and login before accessing dashboard features.
+Each authenticated user can manage only their own URLs.
+MongoDB Atlas is used for cloud database storage.
+JWT tokens are used for secure authentication and protected routes.
+Short URLs redirect through backend APIs.
+Analytics are tracked during every redirect request.
+Expired URLs should stop redirecting after expiry.
+Users are expected to enter valid URLs beginning with http:// or https://.
+QR codes work properly after deployment using production URLs.
+Internet connection is required for API communication.
+The application is optimized for modern browsers and responsive devices.
+Environment variables are mandatory for backend configuration and security.
+REST APIs are used for frontend-backend communication.
+Render and Netlify are used for deployment hosting.
+🧠 AI Planning Document
+📌 Project Goal
 
-| Method | Endpoint           |
-| ------ | ------------------ |
-| POST   | /api/auth/register |
-| POST   | /api/auth/login    |
-| GET    | /api/auth/profile  |
+The primary goal of Katomaran is to build a production-style full-stack URL Shortener platform with analytics tracking using the MERN Stack.
 
-## URL Routes
+The application enables users to:
 
-| Method | Endpoint      |
-| ------ | ------------- |
-| POST   | /api/urls     |
-| GET    | /api/urls     |
-| GET    | /api/urls/:id |
-| DELETE | /api/urls/:id |
+Shorten long URLs
+Manage links through a dashboard
+Track analytics
+Generate QR codes
+Customize aliases
+Monitor URL performance
+🛠️ Development Planning Workflow
+Phase 1 — Authentication System
+Planned Features
+User Signup
+User Login
+JWT Authentication
+Protected Routes
+Implementation
+Created authentication APIs using Express.js
+Implemented JWT-based authentication
+Stored authentication tokens securely
+Protected dashboard routes using middleware
+Phase 2 — URL Shortening Logic
+Planned Features
+Generate short URLs
+Unique short code generation
+URL validation
+Redirect handling
+Implementation
+Used NanoID for generating unique short codes
+Stored URL data in MongoDB Atlas
+Implemented redirect APIs
+Added backend URL validation
+Phase 3 — User Dashboard
+Planned Features
+Display all shortened URLs
+Copy links
+Delete URLs
+Responsive dashboard
+Implementation
+Built dashboard using React
+Added responsive layouts
+Implemented copy-to-clipboard functionality
+Added loading states and toast notifications
+Phase 4 — Analytics System
+Planned Features
+Click tracking
+Analytics dashboard
+Visit history
+Trend visualization
+Implementation
+Stored click analytics in MongoDB
+Tracked redirect events
+Built analytics dashboard
+Added charts and visualizations
+Phase 5 — Bonus Features
+Implemented Features
+QR Code generation
+Custom aliases
+Expiry date support
+Edit URL functionality
+Dark Mode
+Analytics charts
 
-## Analytics
-
-| Method | Endpoint                  |
-| ------ | ------------------------- |
-| GET    | /api/analytics/:shortCode |
-
-## Redirect
-
-| Method | Endpoint    |
-| ------ | ----------- |
-| GET    | /:shortCode |
-
----
-
-# Assumptions Made
-
-* Each shortened URL belongs to one authenticated user.
-* Analytics are stored for every successful redirect.
-* Short codes are generated uniquely using nanoid.
-* MongoDB Atlas is used as the cloud database.
-* Server-side redirect handling is implemented for analytics tracking.
-* Users can only manage their own URLs.
-* Invalid URLs are rejected using backend validation.
-
----
-
-# AI Planning Document
-
-## Planning Approach
-
-The application was planned using a modular MERN architecture to separate frontend and backend responsibilities clearly.
-
-### Frontend Planning
-
-* React-based SPA
-* Dashboard-focused UI
-* Component reusability
-* API service layer
-* Protected routes
-
-### Backend Planning
-
-* REST API structure
-* JWT authentication middleware
-* MongoDB schema relationships
-* Analytics tracking system
-* Centralized error handling
-
-### Database Planning
-
-Three primary collections were designed:
-
-* Users
-* URLs
-* Visits
-
-Relationships:
-
-* One user → many URLs
-* One URL → many visits
-
----
-
-# Architecture Diagram
-
-```text
-                ┌──────────────────┐
-                │     Frontend      │
-                │ React + Vite UI   │
-                └────────┬─────────┘
-                         │ REST API
-                         ▼
-                ┌──────────────────┐
-                │     Backend       │
-                │ Node + Express    │
-                └────────┬─────────┘
-                         │ Mongoose
-                         ▼
-                ┌──────────────────┐
-                │    MongoDB Atlas  │
-                │ Users / URLs /    │
-                │ Visit Analytics   │
-                └──────────────────┘
-```
-
----
-
-# Future Improvements
-
-* QR Code Generation
-* Custom URL Aliases
-* Link Expiry
-* Device & Browser Analytics
-* Export Analytics Reports
-* Public Statistics Page
-
----
-
-# Deployment
-
-Frontend can be deployed using:
-
-* Vercel
-
-Backend can be deployed using:
-
-* Render
-* Railway
-
-Database:
-
-* MongoDB Atlas
-
----
-
-# Author
-
-Pranesh
-
-
+Architecture Diagram
+![alt text](image.png)
 
