@@ -73,7 +73,7 @@
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone https://github.com/praneshkA/URL-Shortener
 ```
 
 ---
